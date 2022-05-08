@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- fontAweosone CDN -->
+  <script src="https://kit.fontawesome.com/6b8f0c7049.js" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo-App-Jquery</title>
+  <style>
+    * {
+      margin: 0;
+      box-sizing: border-box;
+      letter-spacing: 1px;
+      font-family: Verdana, sans-serif;
+      text-transform: capitalize;
+    }
+
+    body {
+      min-height: 100vh;
+      max-width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(45deg, #ff0 50%, #333 50%);
+      background-attachment: fixed;
+      padding: 2vw;
+    }
+
+    .container {
+      min-height: 50vh;
+      max-width: 100vw;
+      min-width: 30vw;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      overflow-y: auto;
+    }
+
+    #input {
+      height: 5vh;
+      width: 100%;
+      outline: none;
+      border: none;
+      border-radius: 3px;
+      background: #666;
+      color: #fff;
+      padding: 0 10px;
+      margin: 15px 0;
+      font-size: 2.5vh;
+    }
+
+    #input::placeholder {
+      color: #bbb;
+      text-align: center;
+    }
+
+    ul {
+      padding: 0;
+      margin: 0;
+    }
+
+    ul li {
+      position: relative;
+      background: #eee;
+      width: 100%;
+      color: #333;
+      height: 6vh;
+      border-radius: 3px;
+      margin: 1.5vh 0vw;
+      padding: 1.5vh 0 1.5vh 1.5vh;
+      list-style: none;
+      font-style: italic;
+    }
+
+    ul .fa-check,
+    .fa-trash {
+      position: absolute;
+      margin: 0 1vh;
+      cursor: pointer;
+    }
+
+    ul .fa-check {
+      color: green;
+      right: 3.5vh;
+    }
+
+    ul .fa-trash {
+      color: red;
+      right: 0.5vh;
+    }
+
+    ul .checked {
+      background: lightgreen;
+      text-decoration: line-through;
+    }
+
+    footer {
+      display: block;
+      position: fixed;
+      top: 0;
+      right: 0;
+      min-width: 10vh;
+      max-width: 20vh;
+      min-height: 6vh;
+      background-color: #fff;
+      text-align: left;
+      border-radius: 5vw;
+      padding: 0.5vh 1vh 0 1vh;
+      margin: 2vh 2vh 0 0;
+    }
+
+    footer p {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      font-size: 4vh;
+      text-align: center;
+    }
+
+    p a {
+      cursor: pointer;
+      display: inline-block;
+      height: 100%;
+      text-decoration: none;
+      text-align: left;
+      transition: .3s;
+    }
+
+    p a:visited {
+      color: #444;
+    }
+
+    p a:hover {
+      color: #f53;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <input type="text" id="input" placeholder="press enter to add tasks" autofocus>
+    <ul></ul>
+  </div>
+  <footer>
+    <p>
+      <a href="https://github.com/EniDev911" target="_blank">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=100009064421475" target="_blank">
+        <i class="fa-brands fa-facebook"></i>
+      </a>
+    </p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+    $(function () {
+      $('#input').change(function () {
+        let input = $(this).val();
+        $('ul').append(`<li>${input} <i class="fas fa-check"></i><i class="fas fa-trash"></i></li>`);
+        $(this).val('');
+      });
+
+      $('ul').on('click', '.fa-trash', function () {
+        $(this).parent('li').fadeOut(200);
+      });
+
+      $('ul').on('click', '.fa-check', function () {
+        $(this).parent('li').toggleClass('checked');
+      });
+    });
+  </script>
+
+</body>
+
+</html>
